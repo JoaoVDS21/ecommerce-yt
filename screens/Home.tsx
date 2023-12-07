@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 function Home() {
@@ -11,3 +11,6 @@ function Home() {
 }
 
 export default Home;
+
+const styles = StyleSheet.create({
+});
