@@ -1,14 +1,16 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Ionicons, Fontisto} from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
 
 import styles from './home.style'
+import { Welcome } from '../components';
 
 function Home() {
   return (
     <SafeAreaView>
+      
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
           <Ionicons name='location-outline' size={24} />
@@ -25,6 +27,11 @@ function Home() {
           </View>
         </View>
       </View>
+
+      <ScrollView>
+        <Welcome/>
+      </ScrollView>
+
     </SafeAreaView>
   );
 }
