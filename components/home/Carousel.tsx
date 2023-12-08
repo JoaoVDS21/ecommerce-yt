@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dimensions, View, Text, StyleSheet, Image } from 'react-native';
-import { SliderBox } from 'react-native-image-slider-box';
 import CarouselSlider from 'react-native-reanimated-carousel';
 
 import { COLORS, SIZES } from '../../constants';
@@ -13,8 +12,6 @@ function Carousel() {
   ];
   
   const width = Dimensions.get('window').width;
-  
-  console.log(width)
   
   return (
     <View style={styles.carouselContainer}>
