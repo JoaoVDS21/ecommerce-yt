@@ -6,6 +6,7 @@ import { TouchableOpacity } from 'react-native';
 
 import styles from './home.style'
 import { Welcome } from '../components';
+import Carousel from '../components/home/Carousel';
 
 function Home() {
   return (
@@ -30,6 +31,7 @@ function Home() {
 
       <ScrollView>
         <Welcome/>
+        <Carousel/>
       </ScrollView>
 
     </SafeAreaView>
