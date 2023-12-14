@@ -1,21 +1,34 @@
 import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, SIZES } from '../../constants';
 import styles from './productRow.style';
 import ProductCardView from './ProductCardView';
+import useFetch from '../../hook/useFetch';
+import { Product } from '../../types/product';
 
 function ProductRow() {
-  const products = [1,2,3,4];
+  const {data, isLoading, error, refetch} = useFetch();
   
   return (
     <View style={styles.container}>
-      <FlatList 
-        data={products}
-        renderItem={({item}) => <ProductCardView />}
-        horizontal
-        contentContainerStyle={{columnGap: SIZES.xLarge}}
-      />
+      {isLoading && (
+        <ActivityIndicator size={SIZES.xxLarge} color={COLORS.primary} />
+      )}
+
+      {error && (
+        <Text>Someting went wrong</Text>
+      )}
+      
+      {!isLoading && !error && (
+        <FlatList 
+          data={data}
+          keyExtractor={(item: Product) => item._id}
+          renderItem={({item}) => <ProductCardView item={item} />}
+          horizontal
+          contentContainerStyle={{columnGap: SIZES.xLarge}}
+        />
+      )}
     </View>
   )
 }

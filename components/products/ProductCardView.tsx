@@ -4,8 +4,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS, SIZES } from '../../constants';
 import styles from './productCardView.style';
 import { useNavigation } from '@react-navigation/native';
+import { Product } from '../../types/product';
 
-function ProductCardView() {  
+interface ProductCardViewProps {
+  item: Product;
+}
+
+function ProductCardView({item}: ProductCardViewProps) {  
   const navigation = useNavigation<any>();
   
   return (
@@ -13,15 +18,16 @@ function ProductCardView() {
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <ImageBackground
-            source={require('../../assets/images/fn1.jpg')}
+            source={{uri: item.imageUrl}}
             style={styles.image}
           />
+          {item.imageUrl}
         </View>
 
         <View style={styles.details}>
-          <Text style={styles.title} numberOfLines={1}>Product</Text>
-          <Text style={styles.supplier} numberOfLines={1}>Product</Text>
-          <Text style={styles.price} numberOfLines={1}>$ 50.00</Text>
+          <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
+          <Text style={styles.supplier} numberOfLines={1}>{item.supplier}</Text>
+          <Text style={styles.price} numberOfLines={1}>{item.price}</Text>
         </View>
       </View>
 
