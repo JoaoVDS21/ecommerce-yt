@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, View, Image, ImageBackground } from 'react-native';
+import { Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import {Ionicons, SimpleLineIcons, MaterialCommunityIcons, Fontisto} from '@expo/vector-icons';
 import styles from './productDetails.style';
-import { useNavigation } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import { COLORS, SIZES } from '../constants';
+import { Product } from '../types/product';
 
 interface ProductDetailsProps {
   navigation: any;
 }
 
 function ProductDetails({navigation}: ProductDetailsProps) {
+  const route = useRoute();
+  const {item}: any = route.params;
+
   const [count, setCount] = useState(1);
   
   function increment() {
@@ -37,16 +41,16 @@ function ProductDetails({navigation}: ProductDetailsProps) {
       </View>
 
       <ImageBackground
-        source={require('../../app/assets/images/fn1.jpg')}
+        source={{uri: item.imageUrl}}
         style={styles.image}
       />
 
       <View style={styles.details}>
         <View style={styles.titleRow}>
-          <Text style={styles.title}>Product</Text>
+          <Text style={styles.title}>{item.title}</Text>
 
           <View style={styles.priceWrapper}>
-            <Text style={styles.price}>$ 50.00</Text>
+            <Text style={styles.price}>$ {item.price}</Text>
           </View>
         </View>
 
@@ -80,7 +84,7 @@ function ProductDetails({navigation}: ProductDetailsProps) {
         <View style={styles.descriptionWrapper}>
           <Text style={styles.description}>Description</Text>
           <Text style={styles.descText}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, similique atque. Saepe, distinctio. Velit est dignissimos fugit, quibusdam porro libero illo facere excepturi deleniti, adipisci deserunt odio vitae error eaque?
+            {item.description}
           </Text>
         </View>
 
@@ -88,7 +92,7 @@ function ProductDetails({navigation}: ProductDetailsProps) {
           <View style={styles.location}>
             <View style={{flexDirection: 'row'}}>
               <Ionicons name="location-outline" size={20}/>
-              <Text>   Cerquilho - SP   </Text>
+              <Text>   {item.product_location}   </Text>
             </View>
 
             <View style={{flexDirection: 'row'}}>

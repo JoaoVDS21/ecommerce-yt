@@ -11,7 +11,7 @@ function useFetch() {
     setError(null);
 
     try {
-      const response = await axios.get('http://192.168.0.191:3000/api/products');
+      const response = await axios.get('http://192.168.0.230:3000/api/products');
       setData(response.data);
     } catch (err) {
       setError(err);
